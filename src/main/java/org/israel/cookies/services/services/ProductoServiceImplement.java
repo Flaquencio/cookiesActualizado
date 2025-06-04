@@ -1,0 +1,15 @@
+package org.israel.cookies.services;
+
+import org.israel.cookies.services.models.Productos;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class ProductoServiceImplement implements ProductoService {
+    @Override
+    public List<Productos> listar() {
+        return Arrays.asList(new Productos(1L, "laptop", "computacion", 523.21),
+                new Productos(2L, "Mouse", "inalambrico", 15.25),
+                new Productos(3L, "Impresora", "tinta continua", 256.25));
+    }
+}
