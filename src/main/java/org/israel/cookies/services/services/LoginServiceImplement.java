@@ -1,4 +1,4 @@
-package org.israel.cookies.services;
+package org.israel.cookies.services.services;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package models;
+package org.israel.cookies.services.models;
 
 public class Productos {
     private long id;

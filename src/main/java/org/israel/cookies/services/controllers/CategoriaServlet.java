@@ -18,41 +18,34 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Optional;
 
+import com.google.gson.Gson;
 
-@WebServlet("/categorias/form")
+
+@WebServlet("/categorias")
 public class CategoriaServlet extends HttpServlet {
-
-    //creamos la conexion a la base de datos
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Creamos la conexion
-        Connection coon = (Connection) req.getAttribute("conn");
-        //creamos el nuevo categorias objeto
-        CategoriaService service = new CategoriaServiceJdbcImplement(coon);
-        //creamos la lista
+        Connection conn = (Connection) req.getAttribute("conn");
+        //Creamos el nuevo objeto de Categorias
+        CategoriaService service= new CategoriaServiceJdbcImplement(conn);
         List<Categorias> categorias = service.listar();
 
-        //obtenemos los parametros de la sesion
-        LoginService auth = new LoginServiceSessionImplement();
-        Optional<String> userNameOptional = auth.getUserName(req);
+        //Obtengo el username
+        LoginService auth= new LoginServiceSessionImplement();
+        Optional<String> userName= auth.getUserName(req);
 
-        //seteamos los atributos de categoria y el username
+        //Seteamos los parámetros
         req.setAttribute("categorias", categorias);
-        req.setAttribute("username", userNameOptional);
-
-        //redireccionamos a la lista de Listar Categorias.jsp
+        req.setAttribute("username", userName);
+        //redireccionamos a la vista de categoria
         getServletContext().getRequestDispatcher("/categoriaListar.jsp").forward(req, resp);
 
+
     }
-
-
 }
 
-
-
-/*
-@WebServlet("/categoria/form")
-public class CategoriaFormControlador extends HttpServlet {
+    /*
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //traemos la conexión a la base de datos
@@ -84,7 +77,7 @@ public class CategoriaFormControlador extends HttpServlet {
         getServletContext().getRequestDispatcher("/formularioCategoria.jsp").forward(req, resp);
     }
 
-    //Sobrescribimos el método doPost
+    //sobreescribimos el metodo post
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Connection conn = (Connection) req.getAttribute("conn");
@@ -108,4 +101,6 @@ public class CategoriaFormControlador extends HttpServlet {
         //Redireccionamos al listado para que no se ejecute el metodo doPost
         resp.sendRedirect(req.getContextPath() + "/categoria");
     }
-}*/
+
+}
+*/

@@ -1,10 +1,10 @@
-package controllers;
+package org.israel.cookies.services.controllers;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import org.israel.cookies.services.LoginService;
-import org.israel.cookies.services.LoginServiceSessionImplement;
+import org.israel.cookies.services.services.LoginService;
+import org.israel.cookies.services.services.LoginServiceSessionImplement;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,4 +1,4 @@
-package controllers;
+package org.israel.cookies.services.controllers;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -6,8 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.israel.cookies.services.models.Productos;
-import org.israel.cookies.services.ProductoService;
-import org.israel.cookies.services.ProductoServiceImplement;
+import org.israel.cookies.services.services.ProductoService;
+import org.israel.cookies.services.services.ProductoServiceImplement;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -77,19 +77,23 @@ public class ProductosServlet extends HttpServlet {
             out.println("<head>");
             out.println("<meta charset=\"utf-8\">");
             out.println("<title>Listar Producto</title>");
+            out.println("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet'>");
             out.println("</head>");
             out.println("<body>");
 
             if (username != null) {
-                out.println("<h1>Bienvenido " + username + " espero encuentres lo que necesites </h1>");
-                out.println("<h2>Listar producto</h2>");
-                out.println("<table>");
+                out.println("<h1 class='text-center mb-4'>Bienvenido " + username + " espero encuentres lo que necesites </h1>");
+                out.println("<h2 class='text-center text-primary mb-4'>Listar producto</h2>");
+                out.println("<table class='table table-bordered table-hover'>");
+                out.println("<thead class='table-dark'>");
                 out.println("<tr>");
                 out.println("<th>ID PRODUCTO</th>");
                 out.println("<th>NOMBRE</th>");
-                out.println("<th>CATEGORIA</th>");
+                out.println("<th>CATEGORÍA</th>");
                 out.println("<th>PRECIO</th>");
                 out.println("</tr>");
+                out.println("</thead>");
+                out.println("<tbody>");
 
                     productos.forEach(p ->{
                         out.println("<tr>");
@@ -100,6 +104,14 @@ public class ProductosServlet extends HttpServlet {
                         out.println("</tr>");
                     });
 
+
+                out.println("</tbody>");
+                out.println("</table>");
+
+                out.println("</div>");
+                out.println("</div>");
+                out.println("</div>");
+
                 //out.println("<h2><a href='index.html'>Volver</a></h2>");
                 out.println("<form action='index.html'><button type='submit'>Volver</button></form>");
                 //out.println("<a href=\"index.html\">Volver a inicio</a>");
@@ -108,7 +120,7 @@ public class ProductosServlet extends HttpServlet {
                 out.println("<h2>No tienes una cuenta, si quieres revisar los los datos por favor crea una en <a href='login.jsp'>login</a>.</h2>");
             }
 
-            out.println("</table>");
+            out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js'></script>");
             out.println("</body>");
             out.println("</html>");
         }
